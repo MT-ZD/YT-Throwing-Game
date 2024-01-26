@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ktl7f1ofrrxg"]
+
+[ext_resource type="Script" path="res://dynamic_elements/pickables/_tools/kill_player_on_collision.gd" id="1_2ohui"]
+
+[node name="KillPlayerOnColision" type="Node"]
+script = ExtResource("1_2ohui")

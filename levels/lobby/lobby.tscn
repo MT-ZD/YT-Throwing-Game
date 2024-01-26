@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://ctnl578g8ta1e"]
+
+[ext_resource type="Script" path="res://levels/lobby/scripts/lobby.gd" id="1_md0ii"]
+[ext_resource type="PackedScene" uid="uid://d3f7nv6n22grd" path="res://dynamic_elements/player/Player.tscn" id="2_deyys"]
+[ext_resource type="PackedScene" uid="uid://dxnmcqedmpaia" path="res://dynamic_elements/dynamic_world_elements/lobby_board/lobby_board.tscn" id="3_s0emv"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ay23f"]
+sky_top_color = Color(0, 0.458824, 0.780392, 1)
+sky_horizon_color = Color(1, 1, 1, 1)
+sky_curve = 0.130583
+ground_bottom_color = Color(0.988235, 0.984314, 0.984314, 1)
+ground_horizon_color = Color(1, 1, 1, 1)
+sun_curve = 0.409812
+
+[sub_resource type="Sky" id="Sky_78aap"]
+sky_material = SubResource("ProceduralSkyMaterial_ay23f")
+
+[sub_resource type="Environment" id="Environment_xuttp"]
+background_mode = 2
+sky = SubResource("Sky_78aap")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_gy2sj"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Lobby" type="Node3D" node_paths=PackedStringArray("spawn_parent")]
+script = ExtResource("1_md0ii")
+spawn_parent = NodePath("SpawnPoint")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xuttp")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+use_collision = true
+radius = 1.325
+height = 0.422647
+sides = 64
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00996757, 0.00703764, -8.47143)
+use_collision = true
+radius = 1.325
+height = 0.422647
+sides = 64
+
+[node name="Player" parent="." instance=ExtResource("2_deyys")]
+force_local = true
+
+[node name="LobbyBoard" parent="." instance=ExtResource("3_s0emv")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -1.73356, 2.06166, -1.67622)
+
+[node name="SpawnPoint" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00996757, 0.264264, -8.47143)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.667365, -0.513873, 0.539035, 0, 0.723799, 0.690011, -0.744731, 0.460489, -0.483038, 0, 5.33124, 0)
+light_color = Color(0.94902, 0.847059, 0.376471, 1)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(-8.08046e-09, 0, 0.18486, 0, 0.18486, 0, -0.18486, 0, -8.08046e-09, 2.98453, 1.56805, 0)
+texture = SubResource("ViewportTexture_gy2sj")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(800, 1600)
+
+[node name="Node3D" type="Node3D" parent="SubViewport"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.97433, 1.63989, 0)
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport/Node3D"]

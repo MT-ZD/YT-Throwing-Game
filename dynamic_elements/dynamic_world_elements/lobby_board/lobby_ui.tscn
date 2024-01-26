@@ -1,0 +1,156 @@
+[gd_scene load_steps=7 format=3 uid="uid://cbtnkowm6p733"]
+
+[ext_resource type="Script" path="res://dynamic_elements/dynamic_world_elements/lobby_board/lobby_ui.gd" id="1_jtt1f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_21mhn"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_36dhn"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color(0.129412, 0.129412, 0.129412, 1)
+border_width_bottom = 2
+border_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+
+[sub_resource type="Theme" id="Theme_nmou8"]
+Button/font_sizes/font_size = 60
+Button/styles/normal = SubResource("StyleBoxFlat_21mhn")
+HSeparator/constants/separation = 24
+Label/font_sizes/font_size = 60
+LineEdit/font_sizes/font_size = 60
+LineEdit/styles/normal = SubResource("StyleBoxFlat_36dhn")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nuweg"]
+bg_color = Color(0.203922, 0.486275, 0.215686, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8x3rr"]
+bg_color = Color(0.203922, 0.486275, 0.215686, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="LobbyUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_nmou8")
+script = ExtResource("1_jtt1f")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartOptions" type="HBoxContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 2
+
+[node name="StartHostBtn" type="Button" parent="CenterContainer/StartOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Host"
+
+[node name="VSeparator" type="VSeparator" parent="CenterContainer/StartOptions"]
+layout_mode = 2
+theme_override_constants/separation = 80
+
+[node name="StartJoinBtn" type="Button" parent="CenterContainer/StartOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Join"
+
+[node name="HostOptions" type="VBoxContainer" parent="CenterContainer"]
+visible = false
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Label" type="Label" parent="CenterContainer/HostOptions"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Host"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/HostOptions"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/HostOptions"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="HostBtn" type="Button" parent="CenterContainer/HostOptions/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_nuweg")
+text = "Host"
+
+[node name="BackBtn1" type="Button" parent="CenterContainer/HostOptions/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Back"
+
+[node name="JoinOptions" type="VBoxContainer" parent="CenterContainer"]
+visible = false
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Label" type="Label" parent="CenterContainer/JoinOptions"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Join"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/JoinOptions"]
+layout_mode = 2
+
+[node name="IPInput" type="LineEdit" parent="CenterContainer/JoinOptions"]
+layout_mode = 2
+text = "192.168.0.196"
+placeholder_text = "IP Addres"
+alignment = 1
+expand_to_text_length = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/JoinOptions"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="JoinBtn" type="Button" parent="CenterContainer/JoinOptions/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_8x3rr")
+text = "Join"
+
+[node name="BackBtn2" type="Button" parent="CenterContainer/JoinOptions/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Back"
+
+[node name="StartGame" type="HBoxContainer" parent="CenterContainer"]
+visible = false
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+
+[node name="StartGameBtn" type="Button" parent="CenterContainer/StartGame"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Start Game"

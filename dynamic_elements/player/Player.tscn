@@ -1,0 +1,198 @@
+[gd_scene load_steps=27 format=3 uid="uid://d3f7nv6n22grd"]
+
+[ext_resource type="PackedScene" uid="uid://b3hdrdn7lg55f" path="res://raw_assets/head.blend" id="1_jhnk6"]
+[ext_resource type="Script" path="res://dynamic_elements/player/Player.gd" id="2_bcoy7"]
+[ext_resource type="PackedScene" uid="uid://d0w4t4mqeksai" path="res://addons/godot-xr-tools/misc/vr_common_shader_cache.tscn" id="3_hdh8v"]
+[ext_resource type="Script" path="res://dynamic_elements/player/head.gd" id="4_oikje"]
+[ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="5_hs7qk"]
+[ext_resource type="PackedScene" uid="uid://cc6ngdqie8o8c" path="res://addons/godot-xr-tools/effects/vignette.tscn" id="5_wtdcv"]
+[ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="6_qtbu0"]
+[ext_resource type="PackedScene" uid="uid://raeeicvvindd" path="res://addons/godot-xr-tools/hands/scenes/highpoly/right_hand.tscn" id="7_vtvra"]
+[ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="8_kunjj"]
+[ext_resource type="PackedScene" uid="uid://njx823gyk04n" path="res://addons/godot-xr-tools/hands/scenes/highpoly/left_hand.tscn" id="9_fg6jb"]
+[ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="10_4xvnj"]
+[ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="10_bmgds"]
+[ext_resource type="PackedScene" uid="uid://0xlsitpu17r1" path="res://addons/godot-xr-tools/functions/movement_footstep.tscn" id="11_7xm4e"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/audio/surface_audio_type.gd" id="12_vena6"]
+[ext_resource type="PackedScene" uid="uid://bft3xyxs31ci3" path="res://addons/godot-xr-tools/functions/function_pose_detector.tscn" id="12_ynva8"]
+[ext_resource type="AudioStream" uid="uid://dc0rkiydodbly" path="res://audio/grass_footstep.wav" id="13_dr82e"]
+[ext_resource type="PackedScene" uid="uid://btf05hjpw6k05" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_physics_hand_low.tscn" id="13_e5wg4"]
+[ext_resource type="PackedScene" uid="uid://bdwmserhqai5h" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_physics_hand_low.tscn" id="14_06chm"]
+[ext_resource type="Script" path="res://dynamic_elements/overrides/XRToolsPlayerBodyMultiplayer.gd" id="15_vwsa1"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_wen3m"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qm7gr"]
+radius = 0.25
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_wrudr"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_2pb3m"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_mj12b"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[sub_resource type="Resource" id="Resource_mlcj2"]
+script = ExtResource("12_vena6")
+name = ""
+walk_sounds = Array[AudioStream]([ExtResource("13_dr82e")])
+walk_pitch_minimum = 0.8
+walk_pitch_maximum = 1.2
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_g2vqx"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:scale")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
+[node name="Player" type="Node3D" node_paths=PackedStringArray("right_hand_model", "right_controller", "left_hand_model", "xr_origin", "xr_camera_3d", "movement_controllers", "head_meshes", "remote_transforms", "player_body")]
+script = ExtResource("2_bcoy7")
+right_hand_model = NodePath("Dummy/RightController/RightHand")
+right_controller = NodePath("LocalPlayer/Right Controller")
+left_hand_model = NodePath("Dummy/LeftController/LeftHand")
+xr_origin = NodePath("LocalPlayer")
+xr_camera_3d = NodePath("LocalPlayer/XRCamera3D")
+movement_controllers = [NodePath("LocalPlayer/Right Controller/MovementDirect"), NodePath("LocalPlayer/Left Controller/MovementDirect")]
+head_meshes = [NodePath("Dummy/Camera/head/Sphere"), NodePath("Dummy/Camera/head/Sphere_001")]
+remote_transforms = [NodePath("LocalPlayer/XRCamera3D/CameraRemoteTransform3D"), NodePath("LocalPlayer/Right Controller/RHandRemoteTransform3D"), NodePath("LocalPlayer/Left Controller/LHandRemoteTransform3D"), NodePath("LocalPlayer/RigRemoteTransform3D")]
+player_body = NodePath("LocalPlayer/PlayerBody")
+
+[node name="Dummy" type="Node3D" parent="."]
+
+[node name="Camera" type="Node3D" parent="Dummy"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+
+[node name="head" parent="Dummy/Camera" instance=ExtResource("1_jhnk6")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Dummy/Camera"]
+replication_config = SubResource("SceneReplicationConfig_wen3m")
+
+[node name="Head" type="StaticBody3D" parent="Dummy/Camera" node_paths=PackedStringArray("player") groups=["PlayerHead"]]
+collision_layer = 524288
+collision_mask = 1023
+script = ExtResource("4_oikje")
+player = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dummy/Camera/Head"]
+shape = SubResource("SphereShape3D_qm7gr")
+
+[node name="RightController" type="Node3D" parent="Dummy"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0)
+
+[node name="RightHand" parent="Dummy/RightController" instance=ExtResource("7_vtvra")]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Dummy/RightController"]
+replication_config = SubResource("SceneReplicationConfig_wrudr")
+
+[node name="LeftController" type="Node3D" parent="Dummy"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, 0)
+
+[node name="LeftHand" parent="Dummy/LeftController" instance=ExtResource("9_fg6jb")]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Dummy/LeftController"]
+replication_config = SubResource("SceneReplicationConfig_2pb3m")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Dummy"]
+replication_config = SubResource("SceneReplicationConfig_mj12b")
+
+[node name="LocalPlayer" type="XROrigin3D" parent="."]
+process_mode = 4
+
+[node name="XRCamera3D" type="XRCamera3D" parent="LocalPlayer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+cull_mask = 1048573
+
+[node name="Vignette" parent="LocalPlayer/XRCamera3D" instance=ExtResource("5_wtdcv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.7, 0)
+
+[node name="VRCommonShaderCache" parent="LocalPlayer/XRCamera3D" instance=ExtResource("3_hdh8v")]
+
+[node name="CameraRemoteTransform3D" type="RemoteTransform3D" parent="LocalPlayer/XRCamera3D"]
+process_mode = 4
+remote_path = NodePath("../../../Dummy/Camera")
+
+[node name="Right Controller" type="XRController3D" parent="LocalPlayer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0)
+tracker = &"right_hand"
+
+[node name="MovementTurn" parent="LocalPlayer/Right Controller" instance=ExtResource("5_hs7qk")]
+
+[node name="FunctionPickup" parent="LocalPlayer/Right Controller" instance=ExtResource("6_qtbu0")]
+
+[node name="MovementDirect" parent="LocalPlayer/Right Controller" instance=ExtResource("8_kunjj")]
+
+[node name="RHandRemoteTransform3D" type="RemoteTransform3D" parent="LocalPlayer/Right Controller"]
+remote_path = NodePath("../../../Dummy/RightController")
+
+[node name="FunctionPointer" parent="LocalPlayer/Right Controller" instance=ExtResource("10_4xvnj")]
+show_laser = 2
+laser_length = 1
+
+[node name="FunctionPoseDetector" parent="LocalPlayer/Right Controller" instance=ExtResource("12_ynva8")]
+
+[node name="RightPhysicsHand" parent="LocalPlayer/Right Controller" instance=ExtResource("13_e5wg4")]
+
+[node name="Left Controller" type="XRController3D" parent="LocalPlayer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, 0)
+tracker = &"left_hand"
+
+[node name="MovementDirect" parent="LocalPlayer/Left Controller" instance=ExtResource("8_kunjj")]
+strafe = true
+
+[node name="FunctionPickup" parent="LocalPlayer/Left Controller" instance=ExtResource("6_qtbu0")]
+
+[node name="LHandRemoteTransform3D" type="RemoteTransform3D" parent="LocalPlayer/Left Controller"]
+process_mode = 4
+remote_path = NodePath("../../../Dummy/LeftController")
+
+[node name="FunctionPointer" parent="LocalPlayer/Left Controller" instance=ExtResource("10_4xvnj")]
+show_laser = 2
+laser_length = 1
+
+[node name="FunctionPoseDetector" parent="LocalPlayer/Left Controller" instance=ExtResource("12_ynva8")]
+
+[node name="LeftPhysicsHand" parent="LocalPlayer/Left Controller" instance=ExtResource("14_06chm")]
+
+[node name="MovementFootstep" parent="LocalPlayer" instance=ExtResource("11_7xm4e")]
+default_surface_audio_type = SubResource("Resource_mlcj2")
+
+[node name="RigRemoteTransform3D" type="RemoteTransform3D" parent="LocalPlayer"]
+process_mode = 4
+remote_path = NodePath("../../Dummy")
+
+[node name="PlayerBody" parent="LocalPlayer" instance=ExtResource("10_bmgds")]
+script = ExtResource("15_vwsa1")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_g2vqx")
+
+[editable path="Dummy/Camera/head"]

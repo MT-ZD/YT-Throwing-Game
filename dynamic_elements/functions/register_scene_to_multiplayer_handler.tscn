@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnyn6jr88ia2v"]
+
+[ext_resource type="Script" path="res://dynamic_elements/functions/RegisterSceneToMultiplayerHandler.gd" id="1_p0ji2"]
+
+[node name="RegisterSceneToMultiplayerHandler" type="Node" node_paths=PackedStringArray("staging")]
+script = ExtResource("1_p0ji2")
+staging = NodePath("")

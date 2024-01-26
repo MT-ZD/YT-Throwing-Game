@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8ov850lycv5h"]
+
+[ext_resource type="PackedScene" uid="uid://benrnbpkcd2g7" path="res://raw_assets/board.blend" id="1_2ufij"]
+[ext_resource type="Script" path="res://dynamic_elements/dynamic_world_elements/score_board/score_board.gd" id="1_xampi"]
+[ext_resource type="PackedScene" uid="uid://dd4n6tnnecmi8" path="res://dynamic_elements/dynamic_world_elements/score_board/text.tscn" id="2_b2xby"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_rfgwm"]
+viewport_path = NodePath("SubViewport")
+
+[node name="ScoreBoard" type="Node3D"]
+script = ExtResource("1_xampi")
+
+[node name="board" parent="." instance=ExtResource("1_2ufij")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6365, 0)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.239437, 0, 0, 0, 0.239437, 0, 0, 0, 0.239437, 0, 2.60151, 0.038331)
+texture = SubResource("ViewportTexture_rfgwm")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+gui_embed_subwindows = true
+size = Vector2i(2000, 1200)
+
+[node name="Control" parent="SubViewport" instance=ExtResource("2_b2xby")]
+
+[editable path="SubViewport/Control"]

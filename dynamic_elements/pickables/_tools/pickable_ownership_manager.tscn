@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dystil3i2hn5u"]
+
+[ext_resource type="Script" path="res://dynamic_elements/pickables/_tools/PickableOwnershipManager.gd" id="1_v2yin"]
+
+[node name="PickableOwnershipManager" type="Node"]
+script = ExtResource("1_v2yin")

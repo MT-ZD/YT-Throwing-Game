@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1t44ste2ob35"]
+
+[ext_resource type="Script" path="res://dynamic_elements/overrides/XRToolsSceneBaseMultiplayer.gd" id="1_efbkw"]
+
+[node name="BaseScene" type="Node3D"]
+script = ExtResource("1_efbkw")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://dynamic_elements/player/Player.tscn", "res://dynamic_elements/pickables/tomato/tomato.tscn", "res://dynamic_elements/pickables/flour/flour.tscn")
+spawn_path = NodePath("..")

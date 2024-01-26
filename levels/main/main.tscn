@@ -1,0 +1,450 @@
+[gd_scene load_steps=52 format=3 uid="uid://820oacl8ist8"]
+
+[ext_resource type="PackedScene" uid="uid://d1t44ste2ob35" path="res://levels/base_scene.tscn" id="1_g6jc7"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="2_dpp86"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="3_pmgvy"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="4_bkuru"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/randomize_transforms.gd" id="5_dsf1w"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/relax.gd" id="6_bnrws"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="7_iwbiq"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_item.gd" id="8_ay52m"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_shape.gd" id="9_6v1nq"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/box_shape.gd" id="10_4tr5t"]
+[ext_resource type="Texture2D" uid="uid://bas5wju16y4sq" path="res://hdri/meadow_4k.exr" id="11_x8j4v"]
+[ext_resource type="PackedScene" uid="uid://cg6g3kalq8b70" path="res://static_elements/environment.tscn" id="12_2f3f4"]
+[ext_resource type="VoxelGIData" uid="uid://co1oh5jo6bw4w" path="res://levels/main/main.VoxelGI_data.res" id="13_o5ia3"]
+[ext_resource type="PackedScene" uid="uid://d14wm2cj1smeh" path="res://raw_assets/temp_wall.blend" id="14_lhiah"]
+[ext_resource type="PackedScene" uid="uid://c03rpoll4eigu" path="res://raw_assets/hut.blend" id="15_qsw8b"]
+[ext_resource type="Texture2D" uid="uid://b6hdguq55lfha" path="res://sprites/flour.png" id="16_g83fb"]
+[ext_resource type="Texture2D" uid="uid://c0m8f1y4cv56l" path="res://sprites/tomato.png" id="17_g18qb"]
+[ext_resource type="PackedScene" uid="uid://d3coiy1ccy4ka" path="res://dynamic_elements/pickables/shield/shield.tscn" id="18_i80yd"]
+[ext_resource type="PackedScene" uid="uid://do7ovi3ajb83x" path="res://raw_assets/shield_stand.blend" id="19_da84c"]
+[ext_resource type="PackedScene" uid="uid://dbv1hvxufc1al" path="res://dynamic_elements/pickables/_tools/spawn_button.tscn" id="20_c6wlm"]
+[ext_resource type="PackedScene" uid="uid://xcnrrg2dltfj" path="res://dynamic_elements/pickables/flour/flour.tscn" id="21_i80i7"]
+[ext_resource type="PackedScene" uid="uid://dwxgsq7neifsj" path="res://dynamic_elements/pickables/tomato/tomato.tscn" id="22_5i7ef"]
+[ext_resource type="PackedScene" uid="uid://b8ov850lycv5h" path="res://dynamic_elements/dynamic_world_elements/score_board/score_board.tscn" id="23_ir5u7"]
+[ext_resource type="Script" path="res://levels/main/scripts/MultiplayerSceneManager.gd" id="24_7ndf6"]
+
+[sub_resource type="Resource" id="Resource_pqwda"]
+script = ExtResource("4_bkuru")
+amount = 1000
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_g8iej"]
+script = ExtResource("5_dsf1w")
+position = Vector3(0.15, 0.15, 0.15)
+rotation = Vector3(20, 360, 20)
+scale = Vector3(1, 1, 1)
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_6udi7"]
+script = ExtResource("6_bnrws")
+iterations = 3
+offset_step = 0.2
+consecutive_step_multiplier = 0.75
+use_computeshader = true
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_plv2n"]
+script = ExtResource("7_iwbiq")
+ray_direction = Vector3(0, -1, 0)
+ray_length = 5.0
+ray_offset = 1.0
+remove_points_on_miss = false
+align_with_collision_normal = false
+max_slope = 90.0
+collision_mask = 1
+exclude_mask = 0
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_qx64l"]
+script = ExtResource("3_pmgvy")
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_pqwda"), SubResource("Resource_g8iej"), SubResource("Resource_6udi7"), SubResource("Resource_plv2n")])
+
+[sub_resource type="Resource" id="Resource_2rxvj"]
+script = ExtResource("10_4tr5t")
+size = Vector3(15.0494, 0.750448, 35.8768)
+
+[sub_resource type="Resource" id="Resource_o2awa"]
+script = ExtResource("10_4tr5t")
+size = Vector3(3.5655, 3.71751, 3.57622)
+
+[sub_resource type="Resource" id="Resource_ki2cy"]
+script = ExtResource("10_4tr5t")
+size = Vector3(3.5655, 3.71751, 3.57622)
+
+[sub_resource type="Resource" id="Resource_ntavm"]
+script = ExtResource("10_4tr5t")
+size = Vector3(4.40282, 3.71751, 2.13671)
+
+[sub_resource type="Resource" id="Resource_c764t"]
+script = ExtResource("10_4tr5t")
+size = Vector3(4.40282, 3.71751, 2.13671)
+
+[sub_resource type="Resource" id="Resource_5b0i4"]
+script = ExtResource("10_4tr5t")
+size = Vector3(4.40282, 3.71751, 2.13671)
+
+[sub_resource type="Resource" id="Resource_ugt04"]
+script = ExtResource("10_4tr5t")
+size = Vector3(4.40282, 3.71751, 2.13671)
+
+[sub_resource type="Resource" id="Resource_k2ra3"]
+script = ExtResource("4_bkuru")
+amount = 200
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_jdwip"]
+script = ExtResource("5_dsf1w")
+position = Vector3(0.15, 0.15, 0.15)
+rotation = Vector3(20, 360, 20)
+scale = Vector3(1, 1, 1)
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_0wrxu"]
+script = ExtResource("6_bnrws")
+iterations = 4
+offset_step = 0.2
+consecutive_step_multiplier = 0.75
+use_computeshader = true
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_jvei3"]
+script = ExtResource("7_iwbiq")
+ray_direction = Vector3(0, -1, 0)
+ray_length = 10.0
+ray_offset = 1.0
+remove_points_on_miss = true
+align_with_collision_normal = false
+max_slope = 90.0
+collision_mask = 1
+exclude_mask = 0
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_jpmu5"]
+script = ExtResource("3_pmgvy")
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_k2ra3"), SubResource("Resource_jdwip"), SubResource("Resource_0wrxu"), SubResource("Resource_jvei3")])
+
+[sub_resource type="Resource" id="Resource_oasx7"]
+script = ExtResource("10_4tr5t")
+size = Vector3(15.086, 0.357856, 35.8768)
+
+[sub_resource type="Resource" id="Resource_qji1t"]
+script = ExtResource("10_4tr5t")
+size = Vector3(3.5655, 3.71751, 3.57622)
+
+[sub_resource type="Resource" id="Resource_yv7ke"]
+script = ExtResource("10_4tr5t")
+size = Vector3(3.5655, 3.71751, 3.57622)
+
+[sub_resource type="Resource" id="Resource_i0dsd"]
+script = ExtResource("10_4tr5t")
+size = Vector3(4.40282, 3.71751, 2.13671)
+
+[sub_resource type="Resource" id="Resource_kk125"]
+script = ExtResource("10_4tr5t")
+size = Vector3(4.40282, 3.71751, 2.13671)
+
+[sub_resource type="Resource" id="Resource_4qqwq"]
+script = ExtResource("10_4tr5t")
+size = Vector3(4.40282, 3.71751, 2.13671)
+
+[sub_resource type="Resource" id="Resource_8op5d"]
+script = ExtResource("10_4tr5t")
+size = Vector3(4.40282, 3.71751, 2.13671)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_nk0hf"]
+panorama = ExtResource("11_x8j4v")
+
+[sub_resource type="Sky" id="Sky_kp3vb"]
+sky_material = SubResource("PanoramaSkyMaterial_nk0hf")
+
+[sub_resource type="Environment" id="Environment_d0rkd"]
+background_mode = 2
+background_energy_multiplier = 0.5
+sky = SubResource("Sky_kp3vb")
+ambient_light_source = 3
+ambient_light_color = Color(0.294118, 0.505882, 1, 1)
+tonemap_mode = 3
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_use_occlusion = true
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 1.29
+glow_strength = 0.78
+glow_bloom = 0.2
+glow_blend_mode = 1
+fog_light_color = Color(0.835294, 0.419608, 0, 1)
+volumetric_fog_density = 0.001
+
+[node name="MainScene" instance=ExtResource("1_g6jc7")]
+
+[node name="_Environment" type="Node3D" parent="." index="0"]
+
+[node name="ProtonScatter2" type="Node3D" parent="_Environment" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.558294, 0, -0.171782)
+script = ExtResource("2_dpp86")
+dbg_disable_thread = true
+modifier_stack = SubResource("Resource_qx64l")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+
+[node name="Grass" type="Node3D" parent="_Environment/ProtonScatter2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.580814, -0.217398, -0.136644)
+script = ExtResource("8_ay52m")
+proportion = 98
+source_scale_multiplier = 0.4
+path = "res://static_elements/grass.tscn"
+
+[node name="ScatterShape2" type="Node3D" parent="_Environment/ProtonScatter2" index="1"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, -0.18294, 0)
+script = ExtResource("9_6v1nq")
+shape = SubResource("Resource_2rxvj")
+
+[node name="ScatterShape" type="Node3D" parent="_Environment/ProtonScatter2" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.622454, 1.42178, -14.1067)
+script = ExtResource("9_6v1nq")
+negative = true
+shape = SubResource("Resource_o2awa")
+
+[node name="ScatterShape3" type="Node3D" parent="_Environment/ProtonScatter2" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.503218, 1.42178, 13.9929)
+script = ExtResource("9_6v1nq")
+negative = true
+shape = SubResource("Resource_ki2cy")
+
+[node name="ScatterShape4" type="Node3D" parent="_Environment/ProtonScatter2" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.52945, 1.42178, 7.07575)
+script = ExtResource("9_6v1nq")
+negative = true
+shape = SubResource("Resource_ntavm")
+
+[node name="ScatterShape5" type="Node3D" parent="_Environment/ProtonScatter2" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.80847, 1.42178, 3.87271)
+script = ExtResource("9_6v1nq")
+negative = true
+shape = SubResource("Resource_c764t")
+
+[node name="ScatterShape6" type="Node3D" parent="_Environment/ProtonScatter2" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.49537, 1.42178, -2.70373)
+script = ExtResource("9_6v1nq")
+negative = true
+shape = SubResource("Resource_5b0i4")
+
+[node name="ScatterShape7" type="Node3D" parent="_Environment/ProtonScatter2" index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7744, 1.42178, -5.90677)
+script = ExtResource("9_6v1nq")
+negative = true
+shape = SubResource("Resource_ugt04")
+
+[node name="ProtonScatter" type="Node3D" parent="_Environment" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.558294, 0, -0.171782)
+script = ExtResource("2_dpp86")
+modifier_stack = SubResource("Resource_jpmu5")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+
+[node name="ScatterShape" type="Node3D" parent="_Environment/ProtonScatter" index="0"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, -0.0326197, 0)
+script = ExtResource("9_6v1nq")
+shape = SubResource("Resource_oasx7")
+
+[node name="Branches" type="Node3D" parent="_Environment/ProtonScatter" index="1"]
+script = ExtResource("8_ay52m")
+proportion = 5
+source_scale_multiplier = 2.0
+path = "res://addons/proton_scatter/demos/assets/dead_branch.tscn"
+
+[node name="Bush" type="Node3D" parent="_Environment/ProtonScatter" index="2"]
+script = ExtResource("8_ay52m")
+proportion = 1
+source_scale_multiplier = 0.6
+path = "res://addons/proton_scatter/demos/assets/bush.tscn"
+
+[node name="Rocks" type="Node3D" parent="_Environment/ProtonScatter" index="3"]
+script = ExtResource("8_ay52m")
+proportion = 10
+source_scale_multiplier = 0.2
+path = "res://addons/proton_scatter/demos/assets/small_rock.tscn"
+
+[node name="ScatterShape2" type="Node3D" parent="_Environment/ProtonScatter" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.622454, 1.42178, -14.1067)
+script = ExtResource("9_6v1nq")
+negative = true
+shape = SubResource("Resource_qji1t")
+
+[node name="ScatterShape3" type="Node3D" parent="_Environment/ProtonScatter" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.503218, 1.42178, 13.9929)
+script = ExtResource("9_6v1nq")
+negative = true
+shape = SubResource("Resource_yv7ke")
+
+[node name="ScatterShape4" type="Node3D" parent="_Environment/ProtonScatter" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.52945, 1.42178, 7.07575)
+script = ExtResource("9_6v1nq")
+negative = true
+shape = SubResource("Resource_i0dsd")
+
+[node name="ScatterShape5" type="Node3D" parent="_Environment/ProtonScatter" index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.80847, 1.42178, 3.87271)
+script = ExtResource("9_6v1nq")
+negative = true
+shape = SubResource("Resource_kk125")
+
+[node name="ScatterShape6" type="Node3D" parent="_Environment/ProtonScatter" index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.49537, 1.42178, -2.70373)
+script = ExtResource("9_6v1nq")
+negative = true
+shape = SubResource("Resource_4qqwq")
+
+[node name="ScatterShape7" type="Node3D" parent="_Environment/ProtonScatter" index="9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7744, 1.42178, -5.90677)
+script = ExtResource("9_6v1nq")
+negative = true
+shape = SubResource("Resource_8op5d")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="_Environment" index="2"]
+environment = SubResource("Environment_d0rkd")
+
+[node name="environment" parent="_Environment" index="3" instance=ExtResource("12_2f3f4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.580814, -0.217398, -0.136644)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="_Environment" index="4"]
+transform = Transform3D(0.838518, -0.0278801, -0.54416, 0.544873, 0.0429054, 0.83742, 6.61388e-10, -0.99869, 0.0511681, 0, 3.16265, 0)
+shadow_enabled = true
+shadow_bias = 0.05
+shadow_blur = 0.804
+
+[node name="VoxelGI" type="VoxelGI" parent="_Environment" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.455627, 1.3587, -0.147217)
+subdiv = 2
+size = Vector3(20.9113, 5.23767, 40.9727)
+data = ExtResource("13_o5ia3")
+
+[node name="_Walls" type="Node3D" parent="_Environment" index="6"]
+
+[node name="temp_wall" parent="_Environment/_Walls" index="0" instance=ExtResource("14_lhiah")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -3.25808, -0.165946, -5.57508)
+
+[node name="temp_wall2" parent="_Environment/_Walls" index="1" instance=ExtResource("14_lhiah")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 3.06382, -0.165946, -2.40383)
+
+[node name="temp_wall3" parent="_Environment/_Walls" index="2" instance=ExtResource("14_lhiah")]
+transform = Transform3D(8.74228e-08, 0, -1, 0, 1, 0, 1, 0, 8.74228e-08, 3.12612, -0.165946, 6.50745)
+
+[node name="temp_wall4" parent="_Environment/_Walls" index="3" instance=ExtResource("14_lhiah")]
+transform = Transform3D(8.74228e-08, 0, -1, 0, 1, 0, 1, 0, 8.74228e-08, -3.19578, -0.165946, 3.33619)
+
+[node name="hut" parent="_Environment" index="7" instance=ExtResource("15_qsw8b")]
+transform = Transform3D(0.92388, 0, 0.382683, 0, 1, 0, -0.382683, 0, 0.92388, -0.0232559, -0.178063, -14.2722)
+
+[node name="hut2" parent="_Environment" index="8" instance=ExtResource("15_qsw8b")]
+transform = Transform3D(0.92388, 0, 0.382683, 0, 1, 0, -0.382683, 0, 0.92388, 0.00925314, -0.150873, 13.8965)
+
+[node name="_Decals" type="Node3D" parent="_Environment" index="9"]
+
+[node name="Decal" type="Decal" parent="_Environment/_Decals" index="0"]
+transform = Transform3D(0.165692, 0, 0, 0, -7.24265e-09, -0.165692, 0, 0.165692, -7.24265e-09, -2.74699, 1.13153, -5.59652)
+size = Vector3(2, 0.1, 2)
+texture_albedo = ExtResource("16_g83fb")
+
+[node name="Decal2" type="Decal" parent="_Environment/_Decals" index="1"]
+transform = Transform3D(0.165692, 0, 0, 0, -7.24265e-09, -0.165692, 0, 0.165692, -7.24265e-09, -2.74699, 1.13153, 3.35642)
+size = Vector3(2, 0.1, 2)
+texture_albedo = ExtResource("16_g83fb")
+
+[node name="Decal3" type="Decal" parent="_Environment/_Decals" index="2"]
+transform = Transform3D(0.165692, 0, 0, 0, -7.24265e-09, -0.165692, 0, 0.165692, -7.24265e-09, 2.51048, 1.13153, 6.52588)
+size = Vector3(2, 0.1, 2)
+texture_albedo = ExtResource("17_g18qb")
+
+[node name="Decal4" type="Decal" parent="_Environment/_Decals" index="3"]
+transform = Transform3D(0.165692, 0, 0, 0, -7.24265e-09, -0.165692, 0, 0.165692, -7.24265e-09, 2.51048, 1.13153, -2.42513)
+size = Vector3(2, 0.1, 2)
+texture_albedo = ExtResource("17_g18qb")
+
+[node name="_DynamicElements" type="Node3D" parent="." index="1"]
+
+[node name="Shield" parent="_DynamicElements" index="0" instance=ExtResource("18_i80yd")]
+transform = Transform3D(-4.37114e-08, 0, 1, -0.242887, 0.970055, -1.06169e-08, -0.970055, -0.242887, -4.24024e-08, 0, 0.911083, 11.189)
+
+[node name="shield_stand" parent="_DynamicElements" index="1" instance=ExtResource("19_da84c")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0205331, 0.215044, 11.2434)
+
+[node name="Shield2" parent="_DynamicElements" index="2" instance=ExtResource("18_i80yd")]
+transform = Transform3D(-4.23945e-08, -1.06488e-08, -1, -0.243615, 0.969872, 0, 0.969872, 0.243615, -4.37114e-08, 0, 0.911, -11.189)
+
+[node name="shield_stand2" parent="_DynamicElements" index="3" instance=ExtResource("19_da84c")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 0.021, 0.215, -11.243)
+
+[node name="PushButton" parent="_DynamicElements" index="4" node_paths=PackedStringArray("spawn_parent") instance=ExtResource("20_c6wlm")]
+transform = Transform3D(-1, -6.46498e-13, 8.74228e-08, 3.82137e-15, 1, 7.43879e-06, -8.74228e-08, 7.43879e-06, -1, -2.76664, 0.827508, -5.60906)
+spawn_item = ExtResource("21_i80i7")
+spawn_parent = NodePath("../..")
+
+[node name="PushButton2" parent="_DynamicElements" index="5" node_paths=PackedStringArray("spawn_parent") instance=ExtResource("20_c6wlm")]
+transform = Transform3D(-1, -8.74228e-08, -6.5032e-13, -8.74228e-08, 1, 7.43879e-06, 0, 7.43879e-06, -1, 2.49202, 0.827508, -2.43397)
+spawn_item = ExtResource("22_5i7ef")
+spawn_parent = NodePath("../..")
+
+[node name="PushButton3" parent="_DynamicElements" index="6" node_paths=PackedStringArray("spawn_parent") instance=ExtResource("20_c6wlm")]
+transform = Transform3D(1, -2.13163e-14, 3.82078e-15, 2.13163e-14, 1, 7.43879e-06, -3.83093e-15, -7.43879e-06, 1, 2.49202, 0.827508, 6.55101)
+spawn_item = ExtResource("22_5i7ef")
+spawn_parent = NodePath("../..")
+
+[node name="PushButton4" parent="_DynamicElements" index="7" node_paths=PackedStringArray("spawn_parent") instance=ExtResource("20_c6wlm")]
+transform = Transform3D(1, -2.13163e-14, 3.82078e-15, 2.13163e-14, 1, 7.43879e-06, -3.83093e-15, -7.43879e-06, 1, -2.78958, 0.827508, 3.37246)
+spawn_item = ExtResource("21_i80i7")
+spawn_parent = NodePath("../..")
+
+[node name="ScoreBoard" parent="." index="2" instance=ExtResource("23_ir5u7")]
+transform = Transform3D(-7.39508e-06, 0, -1, 0, 1, 0, 1, 0, -7.39508e-06, 6.8656, -0.153745, -0.00108679)
+
+[node name="SpawnPoints" type="Node3D" parent="." index="3"]
+
+[node name="1" type="Node3D" parent="SpawnPoints" index="0"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -14.3044)
+
+[node name="2" type="Node3D" parent="SpawnPoints" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 13.9215)
+
+[node name="Players" type="Node3D" parent="." index="4"]
+
+[node name="MultiplayerSceneManager" type="Node" parent="." index="5" node_paths=PackedStringArray("base_scene", "spawn_point_parent", "player_parent")]
+script = ExtResource("24_7ndf6")
+base_scene = NodePath("..")
+spawn_point_parent = NodePath("../SpawnPoints")
+player_parent = NodePath("../Players")

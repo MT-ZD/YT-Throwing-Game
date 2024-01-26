@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwpabg2snh42u"]
+
+[ext_resource type="Script" path="res://dynamic_elements/pickables/_tools/destroy_on_velocity.gd" id="1_4lvcm"]
+
+[node name="DestroyOnVelocity" type="Node" node_paths=PackedStringArray("mesh_node")]
+script = ExtResource("1_4lvcm")
+mesh_node = NodePath("")

@@ -1,0 +1,124 @@
+[gd_scene load_steps=26 format=3 uid="uid://xcnrrg2dltfj"]
+
+[ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_yopls"]
+[ext_resource type="PackedScene" uid="uid://b5xoxm1g8ja58" path="res://raw_assets/flour.blend" id="2_dwvrv"]
+[ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="3_xdl43"]
+[ext_resource type="Animation" uid="uid://dgfeikrugfewi" path="res://addons/godot-xr-tools/hands/animations/left/Cup.res" id="4_vfk3x"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/hands/poses/hand_pose_settings.gd" id="5_rak0j"]
+[ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="6_ov4hg"]
+[ext_resource type="Animation" uid="uid://do01jton6rk42" path="res://addons/godot-xr-tools/hands/animations/right/Cup.res" id="7_lprqv"]
+[ext_resource type="PackedScene" uid="uid://bikkxsbo8x7sd" path="res://addons/godot-xr-tools/audio/pickable_audio.tscn" id="8_dborr"]
+[ext_resource type="AudioStream" uid="uid://m6jliwticwp" path="res://dynamic_elements/pickables/flour/flour_drop.wav" id="9_dfi1g"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/audio/pickable_audio_type.gd" id="9_yys28"]
+[ext_resource type="AudioStream" uid="uid://bffq2cr7ttfc0" path="res://dynamic_elements/pickables/flour/flour_pick.wav" id="10_1kjqv"]
+[ext_resource type="AudioStream" uid="uid://i5jo3r1skdt" path="res://dynamic_elements/pickables/flour/flour_hit.wav" id="11_sfopx"]
+[ext_resource type="Texture2D" uid="uid://dkjx4cliliofx" path="res://sprites/dust_cloud.png" id="13_ao03t"]
+[ext_resource type="PackedScene" uid="uid://c5qe8c68hlhod" path="res://dynamic_elements/pickables/_tools/emit_hit_particles.tscn" id="13_eikc7"]
+[ext_resource type="PackedScene" uid="uid://dwpabg2snh42u" path="res://dynamic_elements/pickables/_tools/destroy_on_velocity.tscn" id="14_jy107"]
+[ext_resource type="PackedScene" uid="uid://ktl7f1ofrrxg" path="res://dynamic_elements/pickables/_tools/kill_player_on_colision.tscn" id="16_681dr"]
+[ext_resource type="PackedScene" uid="uid://dystil3i2hn5u" path="res://dynamic_elements/pickables/_tools/pickable_ownership_manager.tscn" id="17_hgo6e"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mcc8p"]
+size = Vector3(0.100952, 0.161743, 0.0695801)
+
+[sub_resource type="Resource" id="Resource_vln1b"]
+script = ExtResource("5_rak0j")
+closed_pose = ExtResource("4_vfk3x")
+
+[sub_resource type="Resource" id="Resource_08gg3"]
+script = ExtResource("5_rak0j")
+closed_pose = ExtResource("7_lprqv")
+
+[sub_resource type="Resource" id="Resource_0gfy2"]
+script = ExtResource("9_yys28")
+name = ""
+grab_sound = ExtResource("10_1kjqv")
+drop_sound = ExtResource("9_dfi1g")
+hit_sound = ExtResource("11_sfopx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8i5l1"]
+emission_shape = 1
+emission_sphere_radius = 0.2
+angle_min = -229.5
+angle_max = 158.2
+direction = Vector3(0, 1, 0)
+spread = 90.0
+initial_velocity_min = 0.1
+initial_velocity_max = 1.0
+gravity = Vector3(0, -1, 0)
+turbulence_enabled = true
+turbulence_noise_speed = Vector3(0, 1, 0)
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lswbl"]
+transparency = 1
+blend_mode = 1
+albedo_texture = ExtResource("13_ao03t")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_c72t3"]
+material = SubResource("StandardMaterial3D_lswbl")
+size = Vector2(0.2, 0.2)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_cybq6"]
+properties/0/path = NodePath(".:linear_velocity")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:rotation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:scale")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+
+[node name="Flour" instance=ExtResource("1_yopls")]
+mass = 5.0
+continuous_cd = true
+max_contacts_reported = 1
+contact_monitor = true
+
+[node name="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000793457, 0.000183105, 0.00109863)
+shape = SubResource("BoxShape3D_mcc8p")
+
+[node name="flour" parent="." index="1" instance=ExtResource("2_dwvrv")]
+
+[node name="GrabPointHandLeft" parent="." index="2" instance=ExtResource("3_xdl43")]
+transform = Transform3D(0.853533, -0.521039, 0, 0.521039, 0.853533, 0, 0, 0, 1, -0.0683248, 0, -0.0625138)
+hand_pose = SubResource("Resource_vln1b")
+
+[node name="GrabPointHandRight" parent="." index="3" instance=ExtResource("6_ov4hg")]
+transform = Transform3D(0.853551, 0.52101, 0, -0.52101, 0.853551, 0, 0, 0, 1, 0.068, 0, -0.063)
+hand_pose = SubResource("Resource_08gg3")
+
+[node name="PickableAudio" parent="." index="4" instance=ExtResource("8_dborr")]
+pickable_audio_type = SubResource("Resource_0gfy2")
+
+[node name="EmitHitParticles" parent="." index="5" instance=ExtResource("13_eikc7")]
+amount = 50
+one_shot = true
+preprocess = 1.0
+explosiveness = 0.44
+randomness = 0.94
+process_material = SubResource("ParticleProcessMaterial_8i5l1")
+draw_pass_1 = SubResource("QuadMesh_c72t3")
+
+[node name="DestroyOnVelocity" parent="." index="6" node_paths=PackedStringArray("mesh_node") instance=ExtResource("14_jy107")]
+mesh_node = NodePath("../flour")
+
+[node name="KillPlayerOnColision" parent="." index="7" instance=ExtResource("16_681dr")]
+
+[node name="Node" type="Node" parent="." index="8"]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="9"]
+replication_config = SubResource("SceneReplicationConfig_cybq6")
+
+[node name="PickableOwnershipManager" parent="." index="10" instance=ExtResource("17_hgo6e")]

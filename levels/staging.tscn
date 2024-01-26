@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://tfk3rdl7kc4"]
+
+[ext_resource type="PackedScene" uid="uid://bnqnnnet4dw12" path="res://addons/godot-xr-tools/staging/staging.tscn" id="1_3hj4q"]
+[ext_resource type="PackedScene" uid="uid://bnyn6jr88ia2v" path="res://dynamic_elements/functions/register_scene_to_multiplayer_handler.tscn" id="2_5ctd7"]
+
+[node name="Staging" instance=ExtResource("1_3hj4q")]
+main_scene = "res://levels/lobby/lobby.tscn"
+prompt_for_continue = false
+
+[node name="XROrigin3D" parent="." index="1"]
+world_scale = 0.8
+
+[node name="RegisterSceneToMultiplayerHandler" parent="." index="5" node_paths=PackedStringArray("staging") instance=ExtResource("2_5ctd7")]
+staging = NodePath("..")
