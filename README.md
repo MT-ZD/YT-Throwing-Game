@@ -4,7 +4,7 @@
 
 ## About
 
-This project came into existence as a result of YouTube project [link](TBD) and is a simple multiplayer VR throwing game. The game is built using Godot. The objective is to throw an item at an opponent's head. **DO NOT TAKE THIS PROJECT AS A PERFECT EXAMPLE OF HOW TO MAKE A MULTIPLAYER GAME.** This is just a quick and dirty project made for entertainment purposes.
+This project came into existence as a result of YouTube project [link](https://youtu.be/sXfAqoR4adw) and is a simple multiplayer VR throwing game. The game is built using Godot. The objective is to throw an item at an opponent's head. **DO NOT TAKE THIS PROJECT AS A PERFECT EXAMPLE OF HOW TO MAKE A MULTIPLAYER GAME.** This is just a quick and dirty project made for entertainment purposes.
 
 ## Assets
 
